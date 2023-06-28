@@ -1,0 +1,11 @@
+.product-container{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    row-gap: 30px;
+    width: 90%;
+    margin: auto;
+}
+.product-container img {
+    width: 500px;
+    height: 500px;
+}
