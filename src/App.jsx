@@ -6,6 +6,7 @@ import { ProductsData } from './api/Api'
 import Product from './components/Product/Product'
 import { ToastContainer } from 'react-toastify'
 import Cart from './pages/Cart/Cart'
+import Login from './pages/Login/Login'
 
 function App() {
 
@@ -51,7 +52,11 @@ function App() {
         {
           path: "/cart",
           element: <Cart />,
-        }
+        },
+        {
+          path: "/login",
+          element: <Login />,
+        },
 
       ]
     },

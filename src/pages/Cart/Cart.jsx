@@ -2,10 +2,13 @@ import { useSelector } from "react-redux";
 import CartItem from "../../components/CartItem/CartItem";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Cart = () => {
     const productData = useSelector((state) => state.bazar.productData)
+    const userInfo = useSelector((state) => state.bazar.userInfo)
     const [totalPrice, setTotalPrice] = useState('')
+    const [payNow, setPayNow] = useState(false);
     useEffect(() => {
         let price = 0;
         productData.map(item => {
@@ -15,6 +18,13 @@ const Cart = () => {
         setTotalPrice(price.toFixed(2));
     }, [productData])
     console.log(totalPrice);
+    const handleCheckOut = () => {
+        if (userInfo) {
+            setPayNow(true)
+        } else {
+            toast.error('Please Login First')
+        }
+    }
     return (
         <div>
             {
@@ -34,7 +44,11 @@ const Cart = () => {
                                     <p className="text-sm text-gray-700">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos porro laboriosam quasi harum magni in, possimus magnam esse, nemo necessitatibus ex repudiandae sunt expedita fuga quas rerum eligendi corporis. Commodi.</p>
                                 </div>
                             </div>
-                            <button className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">Check out</button>
+                            <button onClick={handleCheckOut} className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">Check out</button>
+                            {
+                                payNow ? <button onClick={handleCheckOut} className="mt-6 w-full rounded-md bg-blue-900 py-1.5 font-medium text-blue-50 hover:bg-blue-600">Pay Now</button> : ' '
+                            }
+
                         </div>
                     </div>
                 </div>

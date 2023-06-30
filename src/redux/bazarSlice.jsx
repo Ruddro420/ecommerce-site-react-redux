@@ -40,20 +40,29 @@ export const bazarSlice = createSlice({
             const item = state.productData.find((item) => item._id === action.payload._id);
             if (item.quantity === 1) {
                 item.quantity = 1;
-            }else{
+            } else {
                 item.quantity--;
             }
+        },
+        // For User Info
+        addUser: (state, action) => {
+            state.userInfo = action.payload;
+        },
+        removeUser: (state) => {
+            state.userInfo = null;
         },
     },
 });
 
-export const { 
-    
+export const {
+
     addToCart,
     deleteItem,
     resetCart,
     incrementQuantity,
     decrementQuantity,
+    addUser,
+    removeUser
 
 } = bazarSlice.actions;
 export default bazarSlice.reducer;
